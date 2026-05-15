@@ -1,0 +1,6 @@
+ID|Name|Number|Make|Model|Year|Type
+9a29205e-a698-4c9c-871c-8e2abfb63200|van|45-123|totoya|hillux|2020|ELECTRIC
+014647e2-369f-4c42-8728-f07e5860d3f9|jeep|227-1293|toyota|prado|2000|GASOLINE
+4cc0c66e-a639-49cb-ab20-d54db15abb1a|bike|vfvf|honda|cd|2024|ELECTRIC
+06fca3d5-39c0-4c37-9fa5-277e707442af|bike|12ww|honda|dedff|2005|GASOLINE
+d8d7d118-617a-47cc-ab00-9d561ea6925e|bus|123ee|tata|df|2010|GASOLINE
