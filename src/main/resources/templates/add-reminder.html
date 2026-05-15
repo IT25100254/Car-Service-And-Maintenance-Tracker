@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <title>Add Reminder</title>
+
+    <link href=
+                  "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+</head>
+
+<body class="bg-light">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
+
+    <div class="container-fluid">
+
+        <a class="navbar-brand fw-bold fs-3"
+           href="/">
+
+            <i class="fa-solid fa-bell me-2"></i>
+
+            Auto Care
+
+        </a>
+
+        <div>
+
+            <a href="/"
+               class="btn btn-outline-light me-2">
+
+                Home
+
+            </a>
+
+            <a href="/dashboard"
+               class="btn btn-outline-light me-2">
+
+                Dashboard
+
+            </a>
+
+            <a href="/reminders"
+               class="btn btn-outline-light me-2">
+
+                Reminders
+
+            </a>
+
+            <a href="/notifications"
+               class="btn btn-outline-light">
+
+                Notifications
+
+            </a>
+
+        </div>
+
+    </div>
+
+</nav>
+
+<div class="container mt-5">
+
+    <div class="card shadow p-5">
+
+        <h2 class="text-success text-center">
+            Add Reminder
+        </h2>
+
+        <hr>
+
+        <form th:action="@{/saveReminder}"
+              th:object="${reminder}"
+              method="post">
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Reminder ID
+                </label>
+
+                <input type="number"
+                       class="form-control"
+                       th:field="*{reminderId}">
+
+            </div>
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Title
+                </label>
+
+                <select th:field="*{title}"
+                        class="form-select">
+
+                    <option value="">
+                        Select Service
+                    </option>
+
+                    <option value="Oil Change">
+                        Oil Change
+                    </option>
+
+                    <option value="Engine Service">
+                        Engine Service
+                    </option>
+
+                    <option value="Brake Inspection">
+                        Brake Inspection
+                    </option>
+
+                    <option value="Insurance Renewal">
+                        Insurance Renewal
+                    </option>
+
+                    <option value="Battery Check">
+                        Battery Check
+                    </option>
+
+                    <option value="Tire Replacement">
+                        Tire Replacement
+                    </option>
+
+                    <option value="Air Filter Cleaning">
+                        Air Filter Cleaning
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Due Date
+                </label>
+
+                <input type="date"
+                       class="form-control"
+                       th:field="*{dueDate}">
+
+            </div>
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Status
+                </label>
+
+                <select th:field="*{currentStatus}"
+                        class="form-select">
+
+                    <option value="Pending">
+                        Pending
+                    </option>
+
+                    <option value="Completed">
+                        Completed
+                    </option>
+
+                </select>
+
+            </div>
+
+            <button type="submit"
+                    class="btn btn-success">
+
+                Save Reminder
+
+            </button>
+
+            <a href="/"
+               class="btn btn-secondary">
+
+                Home
+
+            </a>
+
+        </form>
+
+    </div>
+
+</div>
+
+<footer class="bg-dark text-white text-center p-4 mt-5">
+
+    <h5 class="fw-bold">
+
+        Car Service & Maintenance Tracker
+
+    </h5>
+
+    <p class="mb-0">
+
+        © 2026 SLIIT OOP Project
+
+    </p>
+
+</footer>
+
+</body>
+</html>

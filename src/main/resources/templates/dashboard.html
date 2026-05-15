@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <title>Dashboard</title>
+
+    <link href=
+                  "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+</head>
+
+<body style="background-color:#f5f7fb;">
+
+<!-- NAVBAR -->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
+
+    <div class="container-fluid">
+
+        <a class="navbar-brand fw-bold fs-3"
+           href="/">
+
+            <i class="fa-solid fa-bell me-2"></i>
+
+            Auto Care
+
+        </a>
+
+        <div>
+
+            <a href="/"
+               class="btn btn-outline-light me-2">
+
+
+                Home
+
+            </a>
+
+            <a href="/dashboard"
+               class="btn btn-outline-light me-2">
+
+                Dashboard
+
+            </a>
+
+            <a href="/reminders"
+               class="btn btn-outline-light me-2">
+
+                Reminders
+
+            </a>
+
+            <a href="/notifications"
+               class="btn btn-outline-light">
+
+                Notifications
+
+            </a>
+
+        </div>
+
+    </div>
+
+</nav>
+
+<!-- MAIN CONTAINER -->
+
+<div class="container mt-5">
+
+    <!-- TITLE -->
+
+    <h1 class="text-center text-primary fw-bold display-2">
+
+        Dashboard
+
+    </h1>
+
+    <div class="text-center mb-5">
+
+        <hr class="w-25 mx-auto border-3 border-primary">
+
+    </div>
+
+    <!-- DASHBOARD CARDS -->
+
+    <div class="row g-4">
+
+        <!-- TOTAL -->
+
+        <div class="col-md-3">
+
+            <div class="card bg-dark text-white shadow-lg rounded-4 border-0 p-4"
+                 style="height: 260px;">
+
+                <div class="card-body">
+
+                    <h3>
+
+                        <i class="fa-solid fa-clipboard-list me-2"></i>
+
+                        All Reminders
+
+                    </h3>
+
+                    <h1 class="display-3 fw-bold"
+                        th:text="${total}"></h1>
+
+                    <p>All reminders</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- PENDING -->
+
+        <div class="col-md-3">
+
+            <div class="card bg-primary text-white shadow-lg rounded-4 border-0 p-4"
+                 style="height: 260px;">
+
+                <div class="card-body">
+
+                    <h3>
+
+                        <i class="fa-regular fa-clock me-2"></i>
+
+                        Pending
+
+                    </h3>
+
+                    <h1 class="display-3 fw-bold"
+                        th:text="${pending}"></h1>
+
+                    <p>Pending reminders</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- COMPLETED -->
+
+        <div class="col-md-3">
+
+            <div class="card bg-success text-white shadow-lg rounded-4 border-0 p-4"
+                 style="height: 260px;">
+
+                <div class="card-body">
+
+                    <h3>
+
+                        <i class="fa-solid fa-circle-check me-2"></i>
+
+                        Completed
+
+                    </h3>
+
+                    <h1 class="display-3 fw-bold"
+                        th:text="${completed}"></h1>
+
+                    <p>Completed reminders</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- OVERDUE -->
+
+        <div class="col-md-3">
+
+            <div class="card bg-danger text-white shadow-lg rounded-4 border-0 p-4"
+                 style="height: 260px;">
+
+                <div class="card-body">
+
+                    <h3>
+
+                        <i class="fa-solid fa-circle-exclamation me-2"></i>
+
+                        Overdue
+
+                    </h3>
+
+                    <h1 class="display-3 fw-bold"
+                        th:text="${overdue}"></h1>
+
+                    <p>Past due reminders</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- TABLE -->
+
+    <div class="card shadow-lg rounded-4 border-0 mt-5">
+
+        <div class="card-body p-4">
+
+            <h2 class="fw-bold mb-4">
+
+                Recent Reminders
+
+            </h2>
+
+            <table class="table table-hover align-middle">
+
+                <thead class="table-dark">
+
+                <tr>
+
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Due Date</th>
+                    <th>Status</th>
+
+                </tr>
+
+                </thead>
+
+                <tbody>
+
+                <tr th:each="reminder : ${reminders}">
+
+                    <td th:text="${reminder.reminderId}"></td>
+
+                    <td th:text="${reminder.title}"></td>
+
+                    <td th:text="${reminder.dueDate}"></td>
+
+                    <td>
+
+                        <span th:if="${#strings.equalsIgnoreCase(reminder.currentStatus, 'Pending')}"
+                              class="badge bg-warning text-dark">
+
+                            Pending
+
+                        </span>
+
+                        <span th:if="${#strings.equalsIgnoreCase(reminder.currentStatus, 'Completed')}"
+                              class="badge bg-success">
+
+                            Completed
+
+                        </span>
+
+                        <span th:if="${#strings.equalsIgnoreCase(reminder.currentStatus, 'OVERDUE')}"
+                              class="badge bg-danger">
+
+                            OVERDUE
+
+                        </span>
+
+                    </td>
+
+                </tr>
+
+                </tbody>
+
+            </table>
+
+            <div class="text-center mt-4">
+
+                <a href="/reminders"
+                   class="btn btn-primary btn-lg px-5">
+
+                    <i class="fa-solid fa-list me-2"></i>
+
+                    View All Reminders
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<footer class="bg-dark text-white text-center p-4 mt-5">
+
+    <h5 class="fw-bold">
+
+        Car Service & Maintenance Tracker
+
+    </h5>
+
+    <p class="mb-0">
+
+        © 2026 SLIIT OOP PROJECT WD009
+
+    </p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+    const ctx =
+        document.getElementById('statusChart');
+
+    new Chart(ctx, {
+
+        type: 'pie',
+
+        data: {
+
+            labels: [
+                'Pending',
+                'Completed',
+                'Overdue'
+            ],
+
+            datasets: [{
+
+                data: [
+                    [[${pending}]],
+                    [[${completed}]],
+                    [[${overdue}]]
+                ],
+
+                backgroundColor: [
+                    '#0d6efd',
+                    '#198754',
+                    '#dc3545'
+                ]
+
+            }]
+        }
+    });
+
+</script>
+
+</body>
+</html>
