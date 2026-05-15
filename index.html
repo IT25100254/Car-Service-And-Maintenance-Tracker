@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - AutoCare Maintenance</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Outfit', sans-serif; background-color: #f1f5f9; }
+        .stat-card { transition: transform 0.2s, box-shadow 0.2s; }
+        .stat-card:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+        .fade-in { animation: fadeIn 0.4s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- Navigation -->
+    <nav class="bg-slate-900 text-white px-6 py-4 shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="font-bold text-xl flex items-center gap-2">
+                <div class="p-1.5 rounded-lg bg-blue-600">
+                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                </div>
+                AutoCare Tracker
+            </div>
+            <div class="flex items-center gap-3">
+                <span id="welcomeMessage" class="hidden sm:inline text-slate-300 text-sm font-medium"></span>
+                <div id="userAvatar" class="h-9 w-9 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-sm cursor-pointer hover:bg-blue-500 transition-colors">U</div>
+                <button id="logoutBtn" class="bg-slate-700 hover:bg-red-600 border border-slate-600 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200">
+                    Logout
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow max-w-7xl mx-auto w-full p-4 sm:p-8 mt-2">
+
+        <!-- Welcome Header -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 mb-6 flex flex-col md:flex-row items-start md:items-center justify-between fade-in">
+            <div>
+                <h1 id="dashboardTitle" class="text-3xl font-bold text-slate-900 mb-1">Welcome Back!</h1>
+                <p class="text-slate-500">Here's an overview of your vehicle maintenance status.</p>
+            </div>
+            <div class="mt-4 md:mt-0 flex items-center gap-3">
+                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-700">
+                    ● Active Account
+                </span>
+                <button class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-xl font-medium shadow-md shadow-blue-500/30 transition-all transform hover:-translate-y-0.5 text-sm">
+                    + Add New Vehicle
+                </button>
+            </div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-6">
+            <div class="stat-card bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex items-center gap-4">
+                <div class="p-4 rounded-xl bg-blue-50 text-blue-600">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                </div>
+                <div>
+                    <p class="text-sm font-medium text-slate-500">Registered Vehicles</p>
+                    <p class="text-2xl font-bold text-slate-900">0</p>
+                </div>
+            </div>
+            <div class="stat-card bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex items-center gap-4">
+                <div class="p-4 rounded-xl bg-amber-50 text-amber-500">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                <div>
+                    <p class="text-sm font-medium text-slate-500">Upcoming Services</p>
+                    <p class="text-2xl font-bold text-slate-900">0</p>
+                </div>
+            </div>
+            <div class="stat-card bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex items-center gap-4">
+                <div class="p-4 rounded-xl bg-emerald-50 text-emerald-600">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                <div>
+                    <p class="text-sm font-medium text-slate-500">Completed Services</p>
+                    <p class="text-2xl font-bold text-slate-900">0</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Account Info Card -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 mb-6 fade-in">
+            <h2 class="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2">
+                <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                </svg>
+                My Account
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="flex items-center gap-3">
+                    <span class="text-sm text-slate-500 w-28 shrink-0">Full Name</span>
+                    <span id="infoName" class="font-semibold text-slate-800">—</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <span class="text-sm text-slate-500 w-28 shrink-0">Username</span>
+                    <span id="infoUsername" class="font-semibold text-slate-800">—</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <span class="text-sm text-slate-500 w-28 shrink-0">Email</span>
+                    <span id="infoEmail" class="font-semibold text-slate-800">—</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <span class="text-sm text-slate-500 w-28 shrink-0">Role</span>
+                    <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-blue-100 text-blue-700">Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Empty Vehicles State -->
+        <div class="bg-white p-12 rounded-2xl shadow-sm border border-slate-200 text-center fade-in">
+            <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-slate-50 mb-4 border border-slate-100">
+                <svg class="w-10 h-10 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10l2 2h10l2-2zM13 6l4 4m0 0l2 2m-2-2v6"></path>
+                </svg>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-2">No Vehicles Found</h3>
+            <p class="text-slate-500 max-w-sm mx-auto mb-6">You haven't added any vehicles yet. Add your first vehicle to start tracking maintenance.</p>
+            <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-medium transition-all transform hover:-translate-y-0.5 shadow-md shadow-blue-500/20">
+                + Add Your First Vehicle
+            </button>
+        </div>
+
+    </main>
+
+    <script>
+        // Load current user
+        let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (!currentUser) {
+            window.location.href = 'login.html';
+        }
+        // Redirect admin to admin panel
+        if (currentUser && currentUser.role === 'ADMIN') {
+            window.location.href = 'admin.html';
+        }
+
+        const firstName = (currentUser.fullname || currentUser.username || 'User').split(' ')[0];
+        document.getElementById('welcomeMessage').textContent = 'Hello, ' + firstName;
+        document.getElementById('dashboardTitle').textContent = 'Welcome Back, ' + firstName + '!';
+        document.getElementById('userAvatar').textContent = firstName.charAt(0).toUpperCase();
+        document.getElementById('infoName').textContent = currentUser.fullname || '—';
+        document.getElementById('infoUsername').textContent = currentUser.username || '—';
+        document.getElementById('infoEmail').textContent = currentUser.email || '—';
+
+        document.getElementById('logoutBtn').addEventListener('click', function () {
+            localStorage.removeItem('currentUser');
+            window.location.href = 'login.html';
+        });
+    </script>
+</body>
+</html>
