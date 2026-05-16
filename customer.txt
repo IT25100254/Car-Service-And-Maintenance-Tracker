@@ -1,0 +1,7 @@
+2,Test User,user1,user1@autocare.com,user123,REGULAR
+f6ffc668-efde-453c-8e19-0f2e82f87109,kaveen,kaveen,kaveensanthush@gmail.com,2005,REGULAR
+0e33b174-5f3a-4009-8db9-5e57768b40a6,dinya,dinya123,dinyamindili@gmail.com,2004,REGULAR
+525db2bb-0118-4e0b-9142-7c0c15313cf2,Dinula,Dinula2011,dinulasendil@gmail.com,dinula,REGULAR
+9733c65f-3611-4c39-9361-1a8061bc4e49,Chaya Andradi,chaya,chaya@gmail.com,1978,REGULAR
+349c8ea1-3593-41f0-bfdf-d73229df56c1,Nethma Premachandra,Nethma,nethmapremachandra@gmail.com,200438,REGULAR
+0b5ce10a-d67e-4590-9971-49fee71e4778,Danuji Thennakoon ,Danu,danujithennakoon@gmail.com,2004715,REGULAR
