@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Car Service Dashboard</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f4f6f9; margin: 20px; }
+        .header { margin-bottom: 30px; }
+        .dashboard-grid { display: flex; gap: 20px; }
+        .card { background: white; padding: 25px; border-radius: 10px; width: 250px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-left: 5px solid #007bff; }
+        .card.revenue { border-left-color: #28a745; }
+        .card h3 { margin: 0; color: #666; font-size: 16px; }
+        .card p { font-size: 32px; font-weight: bold; margin: 10px 0 0 0; color: #333; }
+    </style>
+</head>
+<body>
+<div class="header">
+    <h2>Vehicle Service & Maintenance Dashboard</h2>
+    <p>Component 06 - Reporting & Analytics Panel</p>
+</div>
+<div class="dashboard-grid">
+    <div class="card">
+        <h3>Total Vehicles Tracked</h3>
+        <p id="totalVehicles">0</p>
+    </div>
+    <div class="card">
+        <h3>Active Services</h3>
+        <p id="activeServices">0</p>
+    </div>
+    <div class="card revenue">
+        <h3>Total Revenue</h3>
+        <p id="totalRevenue">Rs. 0.00</p>
+    </div>
+</div>
+<script>
+    window.onload = function() {
+        fetch('http://localhost:8080/api/dashboard/summary')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('totalVehicles').innerText = data.totalVehicles;
+                document.getElementById('activeServices').innerText = data.activeServices;
+                document.getElementById('totalRevenue').innerText = 'Rs. ' + data.totalRevenue.toLocaleString();
+            })
+            .catch(error => console.error('Error fetching dashboard:', error));
+    };
+</script>
+</body>
+</html>
